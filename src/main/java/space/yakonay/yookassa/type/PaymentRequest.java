@@ -16,8 +16,8 @@ public class PaymentRequest {
     boolean capture;
     String description;
 
-    public static PaymentRequest create(BigDecimal value, String urlRedirect, String description) {
-        return new PaymentRequest(new AmountType(value), new ConfirmationType(urlRedirect),true, description);
+    public static PaymentRequest create(BigDecimal value, String currency, String urlRedirect, String description) {
+        return new PaymentRequest(new AmountType(value, currency), new ConfirmationType(urlRedirect),true, description);
     }
 
     public String toJson() {
@@ -27,10 +27,11 @@ public class PaymentRequest {
     @FieldDefaults(level = AccessLevel.PUBLIC, makeFinal = true)
     public static class AmountType {
         BigDecimal value;
-        String currency = "RUB";
+        String currency;
 
-        public AmountType(BigDecimal value) {
+        public AmountType(BigDecimal value, String currency) {
             this.value = value;
+            this.currency = currency;
         }
     }
     @FieldDefaults(level = AccessLevel.PUBLIC, makeFinal = true)

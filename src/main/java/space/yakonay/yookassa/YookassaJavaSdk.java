@@ -36,7 +36,7 @@ public class YookassaJavaSdk {
         }
     }
 
-    public Payment createPayment(BigDecimal value, String description, String redirectUrl) throws UnspecifiedShopInformation, BadRequestException, IOException {
+    public Payment createPayment(BigDecimal value, String currency, String description, String redirectUrl) throws UnspecifiedShopInformation, BadRequestException, IOException {
         if (shopId == 0 || shopToken == null) {
             throw new UnspecifiedShopInformation();
         }
@@ -56,7 +56,7 @@ public class YookassaJavaSdk {
 
         OutputStreamWriter writer = new OutputStreamWriter(httpConn.getOutputStream());
 
-        writer.write(PaymentRequest.create(value, redirectUrl, description).toJson());
+        writer.write(PaymentRequest.create(value, currency, redirectUrl, description).toJson());
         writer.flush();
         writer.close();
         httpConn.getOutputStream().close();
@@ -76,4 +76,11 @@ public class YookassaJavaSdk {
         return Payment.fromJson(response);
     }
 
+    public Payment createPayment(BigDecimal value, String description, String redirectUrl) throws UnspecifiedShopInformation, BadRequestException, IOException {
+        return createPayment(value, "RUB", description, redirectUrl);
+    }
+
+    public Payment createPayment(BigDecimal value, String description) throws UnspecifiedShopInformation, BadRequestException, IOException {
+        return createPayment(value, description, "https://yakonay.space/404");
+    }
 }
