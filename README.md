@@ -20,7 +20,7 @@
     <a href="https://discord.gg/SWZ2cPGnBT">
       <img src="https://img.shields.io/badge/Discord-brown?style=for-the-badge&logo=discord&logoColor=white" alt="Discord"/>
     </a>
-      <a href="https://t.me/yakonai">
+      <a href="https://t.me/meyakonay">
       <img src="https://img.shields.io/badge/Telegram-blue?style=for-the-badge&logo=telegram&logoColor=white" alt="Telegram"/>
     </a>
   </div>
