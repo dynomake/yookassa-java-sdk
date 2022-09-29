@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group 'space.yakonay'
+group 'net.swiftysweet.yookassa'
 version '0.0.1-SNAPSHOT'
 
 repositories {

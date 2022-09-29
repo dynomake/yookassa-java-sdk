@@ -1,9 +1,9 @@
-package space.yakonay.yookassa.type;
+package net.swiftysweet.yookassa.type;
 
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import space.yakonay.yookassa.utility.JsonUtil;
+import net.swiftysweet.yookassa.utility.JsonUtil;
 
 import java.math.BigDecimal;
 

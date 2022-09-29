@@ -1,4 +1,4 @@
-package space.yakonay.yookassa.exception;
+package net.swiftysweet.yookassa.exception;
 
 public class BadRequestException extends Exception {
 

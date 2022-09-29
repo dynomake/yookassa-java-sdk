@@ -1,9 +1,9 @@
-package space.yakonay.yookassa.type;
+package net.swiftysweet.yookassa.type;
 
 import com.google.gson.JsonElement;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
-import space.yakonay.yookassa.utility.JsonUtil;
+import net.swiftysweet.yookassa.utility.JsonUtil;
 
 /*
 {

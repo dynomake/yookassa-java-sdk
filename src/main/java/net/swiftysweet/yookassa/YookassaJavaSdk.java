@@ -1,11 +1,11 @@
-package space.yakonay.yookassa;
+package net.swiftysweet.yookassa;
 
 import lombok.Setter;
 import lombok.experimental.UtilityClass;
-import space.yakonay.yookassa.exception.BadRequestException;
-import space.yakonay.yookassa.exception.UnspecifiedShopInformation;
-import space.yakonay.yookassa.type.Payment;
-import space.yakonay.yookassa.type.PaymentRequest;
+import net.swiftysweet.yookassa.exception.BadRequestException;
+import net.swiftysweet.yookassa.exception.UnspecifiedShopInformation;
+import net.swiftysweet.yookassa.type.Payment;
+import net.swiftysweet.yookassa.type.PaymentRequest;
 
 import javax.xml.bind.DatatypeConverter;
 import java.io.IOException;
@@ -14,7 +14,6 @@ import java.io.OutputStreamWriter;
 import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
@@ -81,6 +80,6 @@ public class YookassaJavaSdk {
     }
 
     public Payment createPayment(BigDecimal value, String description) throws UnspecifiedShopInformation, BadRequestException, IOException {
-        return createPayment(value, description, "https://yakonay.space/404");
+        return createPayment(value, description, "https://discord.com/404");
     }
 }
