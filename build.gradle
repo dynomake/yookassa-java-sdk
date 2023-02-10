@@ -1,16 +1,43 @@
 plugins {
     id 'java'
+    id 'maven-publish'
 }
 
-group 'net.swiftysweet.yookassa'
-version '0.0.1-SNAPSHOT'
+group 'works.naifu'
+version '1.0.4'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 repositories {
     mavenCentral()
+    maven {
+        name = "clojars.org"
+        url = uri("https://repo.clojars.org")
+    }
 }
 
 dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.24'
     annotationProcessor 'org.projectlombok:lombok:1.18.24'
-    implementation 'com.google.code.gson:gson:2.9.0'
+    implementation 'com.google.code.gson:gson:2.8.7'
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "clojars"
+            url = uri("https://clojars.org/repo")
+            credentials {
+                username = clojarsUserName
+                password = clojarsDeployToken
+            }
+        }
+
+    }
+    publications {
+        gpr(MavenPublication) {
+            from(components.java)
+        }
+    }
 }

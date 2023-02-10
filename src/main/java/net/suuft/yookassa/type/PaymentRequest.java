@@ -1,9 +1,9 @@
-package net.swiftysweet.yookassa.type;
+package net.suuft.yookassa.type;
 
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import net.swiftysweet.yookassa.utility.JsonUtil;
+import net.suuft.yookassa.utility.JsonUtil;
 
 import java.math.BigDecimal;
 

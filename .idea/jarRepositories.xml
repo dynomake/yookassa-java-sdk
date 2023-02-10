@@ -16,5 +16,10 @@
       <option name="name" value="MavenRepo" />
       <option name="url" value="https://repo.maven.apache.org/maven2/" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="clojars.org" />
+      <option name="name" value="clojars.org" />
+      <option name="url" value="https://repo.clojars.org" />
+    </remote-repository>
   </component>
 </project>

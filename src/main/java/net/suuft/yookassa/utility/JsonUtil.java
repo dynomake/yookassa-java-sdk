@@ -1,4 +1,4 @@
-package net.swiftysweet.yookassa.utility;
+package net.suuft.yookassa.utility;
 
 import com.google.gson.Gson;
 import lombok.Getter;

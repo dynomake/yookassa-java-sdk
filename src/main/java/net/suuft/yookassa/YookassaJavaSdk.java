@@ -1,11 +1,11 @@
-package net.swiftysweet.yookassa;
+package net.suuft.yookassa;
 
 import lombok.Setter;
 import lombok.experimental.UtilityClass;
-import net.swiftysweet.yookassa.exception.BadRequestException;
-import net.swiftysweet.yookassa.exception.UnspecifiedShopInformation;
-import net.swiftysweet.yookassa.type.Payment;
-import net.swiftysweet.yookassa.type.PaymentRequest;
+import net.suuft.yookassa.exception.BadRequestException;
+import net.suuft.yookassa.exception.UnspecifiedShopInformation;
+import net.suuft.yookassa.type.Payment;
+import net.suuft.yookassa.type.PaymentRequest;
 
 import javax.xml.bind.DatatypeConverter;
 import java.io.IOException;

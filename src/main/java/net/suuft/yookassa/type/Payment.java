@@ -1,9 +1,9 @@
-package net.swiftysweet.yookassa.type;
+package net.suuft.yookassa.type;
 
 import com.google.gson.JsonElement;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
-import net.swiftysweet.yookassa.utility.JsonUtil;
+import net.suuft.yookassa.utility.JsonUtil;
 
 /*
 {
@@ -60,4 +60,5 @@ public class Payment {
         String confirmation_url;
 
     }
+
 }

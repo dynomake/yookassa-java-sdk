@@ -1,34 +1,9 @@
-<div id="header" align="center">
-<h1>yookassa-java-sdk</h1>
+# `yookassa-java-sdk`
 
+## `Об SDK:`
+Данное маленькое SDK постоянно улучшаеться и изменяеться разработчиком suuft. Содержит внутри себя не самый лучший код написанный мной несколько месяцев назад. Если вы хотите помочь с рефакторингом - делайте пулл реквесты.
 ---
-
-  <div id="badges">
-
-<a href="LICENSE">
-        <img src="https://img.shields.io/apm/l/vim-mode?label=LICENSE&style=for-the-badge"/>
-</a>
-<a href="https://github.com/swiftysweet/yookassa-java-sdk/releases/tag/default">
-        <img src="https://img.shields.io/amo/dw/dustman?color=dd&label=Download&style=for-the-badge"/>
-</a>
-    <a href="https://vk.com/suuft">
-      <img src="https://img.shields.io/badge/VKontakte-blue?style=for-the-badge&logo=vk&logoColor=white" alt="VKontakte"/>
-    </a>
-    <a href="https://www.youtube.com/channel/UCVjp9ytLEhO4vZmDGjtR2tg">
-      <img src="https://img.shields.io/badge/YouTube-red?style=for-the-badge&logo=youtube&logoColor=white" alt="Youtube"/>
-    </a>
-    <a href="https://discord.gg/SWZ2cPGnBT">
-      <img src="https://img.shields.io/badge/Discord-brown?style=for-the-badge&logo=discord&logoColor=white" alt="Discord"/>
-    </a>
-      <a href="https://t.me/fuuft">
-      <img src="https://img.shields.io/badge/Telegram-blue?style=for-the-badge&logo=telegram&logoColor=white" alt="Telegram"/>
-    </a>
-  </div>
-</div>
-
-## 🖤 `Об SDK:`
-Данное маленькое SDK постоянно улучшаеться и изменяеться разработчиком swiftysweet. Содержит внутри себя не самый лучший код написанный мной несколько месяцев назад. Если вы хотите помочь с рефакторингом - делайте пулл реквесты.
-## :exclamation: `Использование:`
+## `Использование:`
 Чтобы начать использовать эту библиотеку, нужно её добавить в свой проект.
 ### `Инициализация:`
 Инициализация небходимых значений, если их не инициализировать, будет UnspecifiedShopInformation:
@@ -44,4 +19,42 @@ Payment payment = YookassaJavaSdk.createPayment(BigDecimal.valueOf(PAYMENT_COST)
 ```
 В обьекте платежа есть абсолютно все значения, как и в обычном Restful-API yookassa.
 
+## Добавление в зависимости:
+### | `Gradle`:
+Пример добавления этой зависимости в проект с хорошим инструментом автоматической сборки:
+```groovy
+repositories {
+    // other repositories
+    maven {
+        name = "clojars.org"
+        url = uri("https://repo.clojars.org")
+    }
+}
 
+dependencies {
+    // other depend
+    implementation 'works.naifu:yookassa-java-sdk:0.0.1-SNAPSHOT'
+}
+```
+
+### | `Maven`:
+
+И с менее хорошим:
+
+```xml
+<repository>
+    <id>clojars.org</id>
+    <url>https://repo.clojars.org</url>
+</repository>
+```
+
+и конечно зависимость:
+
+```xml
+
+<dependency>
+    <groupId>works.naifu</groupId>
+    <artifactId>yookassa-java-sdk</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+</dependency>
+```

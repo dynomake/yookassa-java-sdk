@@ -1,4 +1,4 @@
-package net.swiftysweet.yookassa.exception;
+package net.suuft.yookassa.exception;
 
 public class BadRequestException extends Exception {
 
