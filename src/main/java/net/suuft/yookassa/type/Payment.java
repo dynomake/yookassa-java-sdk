@@ -3,7 +3,7 @@ package net.suuft.yookassa.type;
 import com.google.gson.JsonElement;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
-import net.suuft.yookassa.utility.JsonUtil;
+import java.util.UUID;
 
 /*
 {
@@ -32,10 +32,10 @@ import net.suuft.yookassa.utility.JsonUtil;
 
 @FieldDefaults(level = AccessLevel.PUBLIC)
 public class Payment {
-    String id;
+    UUID id;
     String status;
     boolean paid;
-    PaymentRequest.AmountType amount;
+    Amount amount;
     ConfirmationType confirmation;
     String created_at;
     String description;
@@ -43,10 +43,7 @@ public class Payment {
     RecipientType recipient;
     boolean refundable;
     boolean test;
-
-    public static Payment fromJson(String json) {
-        return JsonUtil.fromJson(json, Payment.class);
-    }
+    String redirectUrl;
 
     @FieldDefaults(level = AccessLevel.PUBLIC)
     private static class RecipientType {
@@ -60,5 +57,9 @@ public class Payment {
         String confirmation_url;
 
     }
+//
+//    public Payment update() throws UnspecifiedShopInformation, BadRequestException, IOException {
+//        return YookassaJavaSdk.createPayment(amount.value, amount.currency, description, redirectUrl, idempotenceKey);
+//    }
 
 }
