@@ -13,7 +13,7 @@ repositories {
 
 dependencies {
     // other depend
-    implementation 'works.naifu:yookassa-java-sdk:1.0.0'
+    implementation 'works.naifu:yookassa-java-sdk:1.0.1'
 }
 ```
 
@@ -35,6 +35,6 @@ Depend:
 <dependency>
     <groupId>works.naifu</groupId>
     <artifactId>yookassa-java-sdk</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
