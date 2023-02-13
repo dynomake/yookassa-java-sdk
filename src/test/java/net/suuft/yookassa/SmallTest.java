@@ -4,7 +4,6 @@ import net.suuft.yookassa.exception.BadRequestException;
 import net.suuft.yookassa.exception.UnspecifiedShopInformation;
 import net.suuft.yookassa.type.Amount;
 import net.suuft.yookassa.type.Payment;
-import net.suuft.yookassa.utility.JsonUtil;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -25,9 +24,5 @@ public class SmallTest {
         System.out.println("bill link:" + payment.confirmation.confirmation_url);
 
         System.out.println(yookassa.createPayment(new Amount(BigDecimal.valueOf(1), "RUB"), "test", "https://suuft.naifu.works").confirmation.confirmation_url);
-    }
-
-    private static void schedule(long delay, TimeUnit timeUnit, Runnable command) {
-        scheduledExecutor.schedule(command, delay, timeUnit);
     }
 }

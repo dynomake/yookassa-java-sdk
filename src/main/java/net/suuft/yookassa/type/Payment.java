@@ -3,6 +3,7 @@ package net.suuft.yookassa.type;
 import com.google.gson.JsonElement;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
+
 import java.util.UUID;
 
 /*
@@ -57,9 +58,4 @@ public class Payment {
         String confirmation_url;
 
     }
-//
-//    public Payment update() throws UnspecifiedShopInformation, BadRequestException, IOException {
-//        return YookassaJavaSdk.createPayment(amount.value, amount.currency, description, redirectUrl, idempotenceKey);
-//    }
-
 }

@@ -5,7 +5,9 @@ import lombok.NonNull;
 import net.suuft.yookassa.Yookassa;
 import net.suuft.yookassa.exception.BadRequestException;
 import net.suuft.yookassa.exception.UnspecifiedShopInformation;
-import net.suuft.yookassa.type.*;
+import net.suuft.yookassa.type.Amount;
+import net.suuft.yookassa.type.Payment;
+import net.suuft.yookassa.type.Refund;
 import net.suuft.yookassa.type.collecting.PaymentList;
 import net.suuft.yookassa.type.collecting.RefundList;
 import net.suuft.yookassa.type.request.PaymentRequest;
@@ -19,7 +21,6 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.util.Collection;
 import java.util.Scanner;
 import java.util.UUID;
 

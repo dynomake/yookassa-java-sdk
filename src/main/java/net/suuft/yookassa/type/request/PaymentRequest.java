@@ -4,7 +4,6 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import net.suuft.yookassa.type.Amount;
-import net.suuft.yookassa.utility.JsonUtil;
 
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PUBLIC, makeFinal = true)
@@ -16,7 +15,7 @@ public class PaymentRequest {
     String description;
 
     public static PaymentRequest create(Amount amount, String urlRedirect, String description) {
-        return new PaymentRequest(amount, new ConfirmationType(urlRedirect),true, description);
+        return new PaymentRequest(amount, new ConfirmationType(urlRedirect), true, description);
     }
 
     @FieldDefaults(level = AccessLevel.PUBLIC, makeFinal = true)

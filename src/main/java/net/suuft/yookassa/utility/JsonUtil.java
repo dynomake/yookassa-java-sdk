@@ -23,7 +23,7 @@ public class JsonUtil {
     /**
      * Преобразовать JSON обратно в объект
      *
-     * @param json - JSON
+     * @param json  - JSON
      * @param clazz - класс объекта
      */
     public <T> T fromJson(String json, Class<T> clazz) {
