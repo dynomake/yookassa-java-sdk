@@ -1,9 +1,9 @@
-package net.suuft.yookassa.type.request;
+package net.suuft.yookassa.model.request;
 
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import net.suuft.yookassa.type.Amount;
+import net.suuft.yookassa.model.Amount;
 
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PUBLIC, makeFinal = true)

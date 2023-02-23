@@ -1,7 +1,9 @@
-package net.suuft.yookassa.type;
+package net.suuft.yookassa.model;
 
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
+
+import java.util.UUID;
 
 /*
 {
@@ -19,10 +21,10 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PUBLIC)
 public class Refund {
 
-    String id;
+    UUID id;
     String status;
     Amount amount;
     String created_at;
-    String payment_id;
+    UUID payment_id;
 
 }

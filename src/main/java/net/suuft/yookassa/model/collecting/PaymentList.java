@@ -1,15 +1,15 @@
-package net.suuft.yookassa.type.collecting;
+package net.suuft.yookassa.model.collecting;
 
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
-import net.suuft.yookassa.type.Refund;
+import net.suuft.yookassa.model.Payment;
 
 import java.util.Collection;
 import java.util.UUID;
 
 @FieldDefaults(level = AccessLevel.PUBLIC)
-public class RefundList {
+public class PaymentList {
     String type;
-    Collection<Refund> items;
+    Collection<Payment> items;
     UUID next_cursor;
 }

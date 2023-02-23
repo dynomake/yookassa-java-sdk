@@ -3,16 +3,20 @@ package net.suuft.yookassa.implementation;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import net.suuft.yookassa.Yookassa;
+import net.suuft.yookassa.event.YookassaEvent;
 import net.suuft.yookassa.exception.BadRequestException;
 import net.suuft.yookassa.exception.UnspecifiedShopInformation;
-import net.suuft.yookassa.type.Amount;
-import net.suuft.yookassa.type.Payment;
-import net.suuft.yookassa.type.Refund;
-import net.suuft.yookassa.type.collecting.PaymentList;
-import net.suuft.yookassa.type.collecting.RefundList;
-import net.suuft.yookassa.type.request.PaymentRequest;
-import net.suuft.yookassa.type.request.RefundRequest;
-import net.suuft.yookassa.utility.JsonUtil;
+import net.suuft.yookassa.model.Amount;
+import net.suuft.yookassa.model.Payment;
+import net.suuft.yookassa.model.Refund;
+import net.suuft.yookassa.model.Webhook;
+import net.suuft.yookassa.model.collecting.PaymentList;
+import net.suuft.yookassa.model.collecting.RefundList;
+import net.suuft.yookassa.model.collecting.WebhookList;
+import net.suuft.yookassa.model.request.PaymentRequest;
+import net.suuft.yookassa.model.request.RefundRequest;
+import net.suuft.yookassa.model.request.WebhookRequest;
+import static net.suuft.yookassa.utility.JsonUtil.*;
 
 import javax.xml.bind.DatatypeConverter;
 import java.io.IOException;
@@ -32,7 +36,7 @@ public class RealYookassa implements Yookassa {
 
     @Override
     public Payment createPayment(@NonNull Amount amount, @NonNull String description, @NonNull String redirectUrl) throws UnspecifiedShopInformation, BadRequestException, IOException {
-        return parseResponse(Payment.class, "https://api.yookassa.ru/v3/payments", "POST", JsonUtil.toJson(PaymentRequest.create(amount, redirectUrl, description)));
+        return parseResponse(Payment.class, "https://api.yookassa.ru/v3/payments", "POST", toJson(PaymentRequest.create(amount, redirectUrl, description)));
     }
 
     @Override
@@ -47,7 +51,7 @@ public class RealYookassa implements Yookassa {
 
     @Override
     public Refund createRefund(@NonNull UUID paymentIdentifier, @NonNull Amount amount) throws UnspecifiedShopInformation, BadRequestException, IOException {
-        return parseResponse(Refund.class, "https://api.yookassa.ru/v3/refunds", "POST", JsonUtil.toJson(new RefundRequest(amount, paymentIdentifier)));
+        return parseResponse(Refund.class, "https://api.yookassa.ru/v3/refunds", "POST", toJson(new RefundRequest(amount, paymentIdentifier)));
     }
 
     @Override
@@ -60,7 +64,22 @@ public class RealYookassa implements Yookassa {
         return parseResponse(RefundList.class, "https://api.yookassa.ru/v3/refunds", "GET", null);
     }
 
-    private <T> T parseResponse(@NonNull Class<T> wannableClass, @NonNull String requestAddress, @NonNull String requestMethod, String writableJson) throws IOException, UnspecifiedShopInformation, BadRequestException {
+    @Override
+    public Webhook createWebhook(@NonNull YookassaEvent event, @NonNull String url) throws UnspecifiedShopInformation, BadRequestException, IOException {
+        return parseResponse(Webhook.class, "https://api.yookassa.ru/v3/webhooks", "POST", toJson(new WebhookRequest(event.getEventName(), url)));
+    }
+
+    @Override
+    public void deleteWebhook(@NonNull UUID webhookIdentifier) throws UnspecifiedShopInformation, BadRequestException, IOException {
+        parseResponse(null, "https://api.yookassa.ru/v3/webhooks/" + webhookIdentifier, "DELETE",  null);
+    }
+
+    @Override
+    public WebhookList getWebhooks() throws UnspecifiedShopInformation, BadRequestException, IOException {
+        return parseResponse(WebhookList.class, "https://api.yookassa.ru/v3/webhooks", "GET", null);
+    }
+
+    private <T> T parseResponse(Class<T> wannableClass, @NonNull String requestAddress, @NonNull String requestMethod, String writableJson) throws IOException, UnspecifiedShopInformation, BadRequestException {
         if (shopIdentifier == 0 || shopToken == null) {
             throw new UnspecifiedShopInformation();
 
@@ -103,6 +122,8 @@ public class RealYookassa implements Yookassa {
             throw new BadRequestException();
         }
 
-        return JsonUtil.fromJson(response, wannableClass);
+        if (wannableClass == null) return null;
+
+        return fromJson(response, wannableClass);
     }
 }

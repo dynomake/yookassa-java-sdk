@@ -1,15 +1,15 @@
-package net.suuft.yookassa.type.collecting;
+package net.suuft.yookassa.model.collecting;
 
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
-import net.suuft.yookassa.type.Payment;
+import net.suuft.yookassa.model.Webhook;
 
 import java.util.Collection;
 import java.util.UUID;
 
 @FieldDefaults(level = AccessLevel.PUBLIC)
-public class PaymentList {
+public class WebhookList {
     String type;
-    Collection<Payment> items;
+    Collection<Webhook> items;
     UUID next_cursor;
 }

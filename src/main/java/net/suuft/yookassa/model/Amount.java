@@ -1,17 +1,14 @@
-package net.suuft.yookassa.type;
+package net.suuft.yookassa.model;
 
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 import java.math.BigDecimal;
 
+@AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PUBLIC, makeFinal = true)
 public class Amount {
     BigDecimal value;
     String currency;
-
-    public Amount(BigDecimal value, String currency) {
-        this.value = value;
-        this.currency = currency;
-    }
 }

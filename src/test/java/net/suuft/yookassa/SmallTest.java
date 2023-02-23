@@ -2,14 +2,13 @@ package net.suuft.yookassa;
 
 import net.suuft.yookassa.exception.BadRequestException;
 import net.suuft.yookassa.exception.UnspecifiedShopInformation;
-import net.suuft.yookassa.type.Amount;
-import net.suuft.yookassa.type.Payment;
+import net.suuft.yookassa.model.Amount;
+import net.suuft.yookassa.model.Payment;
 
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 public class SmallTest {
 

@@ -1,4 +1,4 @@
-package net.suuft.yookassa.type;
+package net.suuft.yookassa.model;
 
 import com.google.gson.JsonElement;
 import lombok.AccessLevel;
