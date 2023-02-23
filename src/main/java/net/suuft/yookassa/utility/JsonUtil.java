@@ -12,19 +12,19 @@ public class JsonUtil {
 
 
     /**
-     * Преобразовать объект в JSON
+     * Java Object to json
      *
-     * @param object - объект
+     * @param object - objest
      */
     public String toJson(Object object) {
         return gson.toJson(object);
     }
 
     /**
-     * Преобразовать JSON обратно в объект
+     * JSON back to java Object
      *
      * @param json  - JSON
-     * @param clazz - класс объекта
+     * @param clazz - object class
      */
     public <T> T fromJson(String json, Class<T> clazz) {
         return gson.fromJson(json, clazz);
