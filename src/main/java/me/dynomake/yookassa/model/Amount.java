@@ -1,4 +1,4 @@
-package net.suuft.yookassa.model;
+package me.dynomake.yookassa.model;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

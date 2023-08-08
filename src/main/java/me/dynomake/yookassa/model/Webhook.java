@@ -1,12 +1,13 @@
-package net.suuft.yookassa.model.request;
+package me.dynomake.yookassa.model;
 
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
-@AllArgsConstructor
+import java.util.UUID;
+
 @FieldDefaults(level = AccessLevel.PUBLIC)
-public class WebhookRequest {
+public class Webhook {
+    UUID id;
     String event;
     String url;
 }

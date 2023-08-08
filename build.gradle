@@ -3,8 +3,8 @@ plugins {
     id 'maven-publish'
 }
 
-group 'works.naifu'
-version '1.0.2'
+group 'io.github.dynomake'
+version '1.0.5'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8

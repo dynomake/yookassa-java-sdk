@@ -13,7 +13,7 @@ repositories {
 
 dependencies {
     // other depend
-    implementation 'works.naifu:yookassa-java-sdk:1.0.2'
+    implementation 'io.github.dynomake:yookassa-java-sdk:1.0.5'
 }
 ```
 
@@ -33,8 +33,8 @@ Depend:
 ```xml
 
 <dependency>
-    <groupId>works.naifu</groupId>
+    <groupId>io.github.dynomake</groupId>
     <artifactId>yookassa-java-sdk</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.5</version>
 </dependency>
 ```

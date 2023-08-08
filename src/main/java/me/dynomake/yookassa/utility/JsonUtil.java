@@ -1,4 +1,4 @@
-package net.suuft.yookassa.utility;
+package me.dynomake.yookassa.utility;
 
 import com.google.gson.Gson;
 import lombok.Getter;

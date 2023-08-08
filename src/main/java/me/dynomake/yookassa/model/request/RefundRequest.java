@@ -1,9 +1,9 @@
-package net.suuft.yookassa.model.request;
+package me.dynomake.yookassa.model.request;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import net.suuft.yookassa.model.Amount;
+import me.dynomake.yookassa.model.Amount;
 
 import java.util.UUID;
 

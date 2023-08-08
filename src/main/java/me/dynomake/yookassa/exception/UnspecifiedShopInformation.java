@@ -1,4 +1,4 @@
-package net.suuft.yookassa.exception;
+package me.dynomake.yookassa.exception;
 
 public class UnspecifiedShopInformation extends Exception {
 }

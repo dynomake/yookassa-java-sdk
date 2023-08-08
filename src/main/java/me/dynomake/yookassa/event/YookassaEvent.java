@@ -1,4 +1,4 @@
-package net.suuft.yookassa.event;
+package me.dynomake.yookassa.event;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
