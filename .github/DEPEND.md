@@ -6,14 +6,13 @@ If you use Gradle with Groovy, then here is an example of adding dependencies:
 repositories {
     // other repositories
     maven {
-        name = "clojars.org"
-        url = uri("https://repo.clojars.org")
+        url = uri("https://maven.dynomake.space/releases")
     }
 }
 
 dependencies {
     // other depend
-    implementation 'io.github.dynomake:yookassa-java-sdk:1.0.5'
+    implementation 'space.dynomake:yookassa-java-sdk:1.0.6'
 }
 ```
 
@@ -23,8 +22,8 @@ Repository:
 
 ```xml
 <repository>
-    <id>clojars.org</id>
-    <url>https://repo.clojars.org</url>
+    <id>dynomake.space</id>
+    <url>https://maven.dynomake.space/releases</url>
 </repository>
 ```
 
@@ -33,8 +32,8 @@ Depend:
 ```xml
 
 <dependency>
-    <groupId>io.github.dynomake</groupId>
+    <groupId>space.dynomake</groupId>
     <artifactId>yookassa-java-sdk</artifactId>
-    <version>1.0.5</version>
+    <version>1.0.6</version>
 </dependency>
 ```
