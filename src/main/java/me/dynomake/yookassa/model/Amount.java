@@ -2,13 +2,17 @@ package me.dynomake.yookassa.model;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 import java.math.BigDecimal;
 
+@Getter
 @AllArgsConstructor
-@FieldDefaults(level = AccessLevel.PUBLIC, makeFinal = true)
+@NoArgsConstructor()
 public class Amount {
-    BigDecimal value;
-    String currency;
+    private String value;
+    private String currency;
+
 }

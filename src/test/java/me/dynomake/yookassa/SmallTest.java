@@ -3,10 +3,16 @@ package me.dynomake.yookassa;
 import me.dynomake.yookassa.exception.BadRequestException;
 import me.dynomake.yookassa.exception.UnspecifiedShopInformation;
 import me.dynomake.yookassa.model.Amount;
+import me.dynomake.yookassa.model.Confirmation;
 import me.dynomake.yookassa.model.Payment;
+import me.dynomake.yookassa.model.request.PaymentRequest;
+import me.dynomake.yookassa.model.request.receipt.Receipt;
+import me.dynomake.yookassa.model.request.receipt.ReceiptCustomer;
+import me.dynomake.yookassa.model.request.receipt.ReceiptItem;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.UUID;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -17,22 +23,28 @@ public class SmallTest {
 
 
     public static void main(String[] args) throws UnspecifiedShopInformation, BadRequestException, IOException {
-        Yookassa yookassa = Yookassa.initialize(1, "");
+        Yookassa yookassa = Yookassa.initialize(4, "TOKEN");
+        Payment payment = yookassa.createPayment(PaymentRequest.builder()
+                .amount(new Amount("2.00", "RUB"))
 
-        // запросим платеж с банковской карты и сохраним её)))
-        Payment payment = yookassa.createPayment("bank_card", true,
-                new Amount(BigDecimal.valueOf(1), "EUR"), "Test Payment", "https://suuft.naifu.works");
+                .description("Это тестовый платеж!")
+                        .receipt(Receipt.builder()
+                                .customer(ReceiptCustomer.builder().email("dynomake@gmail.com").build())
+                                .items(Arrays.asList(ReceiptItem.builder()
+                                                .amount(new Amount("2.00", "RUB"))
+                                                .quantity(1)
+                                                .subject("service")
+                                                .paymentMode("full_payment")
+                                                .vat(1)
+                                                .description("тестовый товар").build()))
+                                .build())
+                .savePaymentMethod(true)
+                        .confirmation(Confirmation.builder()
+                                .type("redirect")
+                                .returnUrl("https://dynomake.space")
+                                .build())
+                .build());
 
-        // только если покупатель разрешил сохранить метод оплаты
-        if (payment.payment_method.saved) {
-            UUID methodId = payment.payment_method.id;
-
-            yookassa.createRecurrentPayment(methodId,
-                    new Amount(BigDecimal.valueOf(1), "EUR"), "ты сохранил карту и потерял евро");
-        }
-
-        System.out.println("bill link:" + payment.confirmation.confirmation_url);
-
-        System.out.println(yookassa.createPayment(new Amount(BigDecimal.valueOf(1), "RUB"), "test", "https://suuft.naifu.works").confirmation.confirmation_url);
+        System.out.println("bill link:" + payment.getConfirmation().getConfirmationUrl());
     }
 }

@@ -1,75 +1,150 @@
 package me.dynomake.yookassa.model;
 
-import com.google.gson.JsonElement;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.experimental.FieldDefaults;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
 
+import java.time.OffsetDateTime;
+import java.util.Map;
 import java.util.UUID;
 
-/*
-{
-  "id": "23d93cac-000f-5000-8000-126628f15141",
-  "status": "pending",
-  "paid": false,
-  "amount": {
-    "value": "100.00",
-    "currency": "RUB"
-  },
-  "confirmation": {
-    "type": "redirect",
-    "confirmation_url": "https://yoomoney.ru/api-pages/v2/payment-confirm/epl?orderId=23d93cac-000f-5000-8000-126628f15141"
-  },
-  "payment_method": {
-    "type": "bank_card",
-    "id": "22e12f66-000f-5000-8000-18db351245c7",
-    "saved": false
-  },
-  "created_at": "2019-01-22T14:30:45.129Z",
-  "description": "Заказ №1",
-  "metadata": {},
-  "recipient": {
-    "account_id": "100500",
-    "gateway_id": "100700"
-  },
-  "refundable": false,
-  "test": false
-}
- */
-
-@FieldDefaults(level = AccessLevel.PUBLIC)
+@Getter
+//@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Payment {
-    UUID id;
-    String status;
-    boolean paid;
-    Amount amount;
-    ConfirmationType confirmation;
-    String created_at;
-    String description;
-    JsonElement metadata;
-    RecipientType recipient;
-    PaymentType payment_method;
-    boolean refundable;
-    boolean test;
-    String redirectUrl;
+    @JsonProperty("id")
+    private UUID id;
 
+    @JsonProperty("status")
+    private String status;
+
+    @JsonProperty("paid")
+    private boolean paid;
+
+    @JsonProperty("amount")
+    private Amount amount;
+
+    @JsonProperty("authorization_details")
+    private AuthorizationDetails authorizationDetails;
+
+    @JsonProperty("created_at")
+    private OffsetDateTime createdAt;
+
+    @JsonProperty("expires_at")
+    private OffsetDateTime expiresAt;
+
+    @JsonProperty("description")
+    private String description;
+
+    @JsonProperty("metadata")
+    private Map<String, Object> metadata;
+
+    @JsonProperty("payment_method")
+    private PaymentMethod paymentMethod;
+    private Recipient recipient;
+    private boolean refundable;
+    private Confirmation confirmation;
+    private boolean test;
+
+    @JsonProperty("income_amount")
+    private Amount incomeAmount;
+
+    @Getter
+    @Builder
     @AllArgsConstructor
-    @FieldDefaults(level = AccessLevel.PUBLIC)
-    public static class PaymentType {
-        String type;
-        UUID id;
-        boolean saved;
+    @NoArgsConstructor
+    public static class AuthorizationDetails {
+        @JsonProperty("rrn")
+        private String rrn;
+
+        @JsonProperty("auth_code")
+        private String authCode;
+
+        @JsonProperty("three_d_secure")
+        private ThreeDSecure threeDSecure;
     }
 
-    @FieldDefaults(level = AccessLevel.PUBLIC)
-    public static class RecipientType {
-        String account_id;
-        String gateway_id;
+    @Getter
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class ThreeDSecure {
+        @JsonProperty("applied")
+        private boolean applied;
     }
 
-    @FieldDefaults(level = AccessLevel.PUBLIC)
-    public static class ConfirmationType {
-        String type = "redirect";
-        String confirmation_url;
+    @Getter
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class PaymentMethod {
+        @JsonProperty("type")
+        private String type;
+
+        @JsonProperty("id")
+        private UUID id;
+
+        @JsonProperty("saved")
+        private boolean saved;
+
+        @JsonProperty("card")
+        private Card card;
+
+        @JsonProperty("title")
+        private String title;
+    }
+
+    @Getter
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class Card {
+        @JsonProperty("first6")
+        private String first6;
+
+        @JsonProperty("last4")
+        private String last4;
+
+        @JsonProperty("expiry_month")
+        private String expiryMonth;
+
+        @JsonProperty("expiry_year")
+        private String expiryYear;
+
+        @JsonProperty("card_type")
+        private String cardType;
+
+        @JsonProperty("card_product")
+        private CardProduct cardProduct;
+
+        @JsonProperty("issuer_country")
+        private String issuerCountry;
+
+        @JsonProperty("issuer_name")
+        private String issuerName;
+    }
+
+    @Getter
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class CardProduct {
+        @JsonProperty("code")
+        private String code;
+
+        @JsonProperty("name")
+        private String name;
+    }
+
+    @Getter
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class Recipient {
+        @JsonProperty("account_id")
+        private String accountId;
+
+        @JsonProperty("gateway_id")
+        private String gatewayId;
     }
 }

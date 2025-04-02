@@ -1,12 +1,15 @@
 package me.dynomake.yookassa.model.request;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.experimental.FieldDefaults;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
+import lombok.Getter;
 
-@AllArgsConstructor
-@FieldDefaults(level = AccessLevel.PUBLIC)
+@Getter
+@Builder
 public class WebhookRequest {
-    String event;
-    String url;
+    @JsonProperty("event")
+    private String event;
+    
+    @JsonProperty("url")
+    private String url;
 }

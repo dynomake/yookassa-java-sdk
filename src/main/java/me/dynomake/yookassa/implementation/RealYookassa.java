@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import me.dynomake.yookassa.Yookassa;
 import me.dynomake.yookassa.exception.BadRequestException;
-import me.dynomake.yookassa.model.request.RecurrentPaymentRequest;
 import me.dynomake.yookassa.utility.JsonUtil;
 import me.dynomake.yookassa.event.YookassaEvent;
 import me.dynomake.yookassa.exception.UnspecifiedShopInformation;
@@ -19,7 +18,6 @@ import me.dynomake.yookassa.model.request.PaymentRequest;
 import me.dynomake.yookassa.model.request.RefundRequest;
 import me.dynomake.yookassa.model.request.WebhookRequest;
 
-import javax.xml.bind.DatatypeConverter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStreamWriter;
@@ -28,6 +26,7 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 import java.util.UUID;
+import java.util.Base64;
 
 @AllArgsConstructor
 public class RealYookassa implements Yookassa {
@@ -36,18 +35,8 @@ public class RealYookassa implements Yookassa {
     private String shopToken;
 
     @Override
-    public Payment createPayment(@NonNull Amount amount, @NonNull String description, @NonNull String redirectUrl) throws UnspecifiedShopInformation, BadRequestException, IOException {
-        return parseResponse(Payment.class, "https://api.yookassa.ru/v3/payments", "POST", JsonUtil.toJson(PaymentRequest.create(amount, redirectUrl, description)));
-    }
-
-    @Override
-    public Payment createPayment(@NonNull String paymentMethod, @NonNull boolean saveMethod, @NonNull Amount amount, @NonNull String description, @NonNull String redirectUrl) throws UnspecifiedShopInformation, BadRequestException, IOException {
-        return parseResponse(Payment.class, "https://api.yookassa.ru/v3/payments", "POST", JsonUtil.toJson(PaymentRequest.create(amount, redirectUrl, description, paymentMethod, saveMethod)));
-    }
-
-    @Override
-    public Payment createRecurrentPayment(@NonNull UUID methodId, @NonNull Amount amount, @NonNull String description) throws UnspecifiedShopInformation, BadRequestException, IOException {
-        return parseResponse(Payment.class, "https://api.yookassa.ru/v3/payments", "POST", JsonUtil.toJson(new RecurrentPaymentRequest(amount, true, methodId, description)));
+    public Payment createPayment(@NonNull PaymentRequest paymentRequest) throws UnspecifiedShopInformation, BadRequestException, IOException {
+        return parseResponse(Payment.class, "https://api.yookassa.ru/v3/payments", "POST", JsonUtil.toJson(paymentRequest));
     }
 
     @Override
@@ -61,8 +50,8 @@ public class RealYookassa implements Yookassa {
     }
 
     @Override
-    public Refund createRefund(@NonNull UUID paymentIdentifier, @NonNull Amount amount) throws UnspecifiedShopInformation, BadRequestException, IOException {
-        return parseResponse(Refund.class, "https://api.yookassa.ru/v3/refunds", "POST", JsonUtil.toJson(new RefundRequest(amount, paymentIdentifier)));
+    public Refund createRefund(@NonNull RefundRequest request) throws UnspecifiedShopInformation, BadRequestException, IOException {
+        return parseResponse(Refund.class, "https://api.yookassa.ru/v3/refunds", "POST", JsonUtil.toJson(request));
     }
 
     @Override
@@ -76,8 +65,8 @@ public class RealYookassa implements Yookassa {
     }
 
     @Override
-    public Webhook createWebhook(@NonNull YookassaEvent event, @NonNull String url) throws UnspecifiedShopInformation, BadRequestException, IOException {
-        return parseResponse(Webhook.class, "https://api.yookassa.ru/v3/webhooks", "POST", JsonUtil.toJson(new WebhookRequest(event.getEventName(), url)));
+    public Webhook createWebhook(@NonNull WebhookRequest request) throws UnspecifiedShopInformation, BadRequestException, IOException {
+        return parseResponse(Webhook.class, "https://api.yookassa.ru/v3/webhooks", "POST", JsonUtil.toJson(request));
     }
 
     @Override
@@ -91,9 +80,9 @@ public class RealYookassa implements Yookassa {
     }
 
     private <T> T parseResponse(Class<T> wannableClass, @NonNull String requestAddress, @NonNull String requestMethod, String writableJson) throws IOException, UnspecifiedShopInformation, BadRequestException {
+        System.out.println("Request: " + writableJson);
         if (shopIdentifier == 0 || shopToken == null) {
             throw new UnspecifiedShopInformation();
-
         }
         URL url = new URL(requestAddress);
 
@@ -101,9 +90,8 @@ public class RealYookassa implements Yookassa {
 
         httpConn.setRequestMethod(requestMethod);
 
-        byte[] message = (shopIdentifier + ":" + shopToken)
-                .getBytes(StandardCharsets.UTF_8);
-        String basicAuth = DatatypeConverter.printBase64Binary(message);
+        String auth = shopIdentifier + ":" + shopToken;
+        String basicAuth = Base64.getEncoder().encodeToString(auth.getBytes(StandardCharsets.UTF_8));
 
         httpConn.setRequestProperty("Authorization", "Basic " + basicAuth);
 
@@ -127,6 +115,8 @@ public class RealYookassa implements Yookassa {
         Scanner s = new Scanner(responseStream).useDelimiter("\\A");
 
         String response = s.hasNext() ? s.next() : "";
+
+        System.out.println(response);
 
         if (!success) {
             System.out.println(response);

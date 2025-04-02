@@ -1,6 +1,8 @@
 package me.dynomake.yookassa.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
 import java.util.UUID;
@@ -18,13 +20,16 @@ import java.util.UUID;
 }
  */
 
+@Getter
 @FieldDefaults(level = AccessLevel.PUBLIC)
 public class Refund {
 
-    UUID id;
-    String status;
-    Amount amount;
-    String created_at;
-    UUID payment_id;
+    private UUID id;
+    private String status;
+    private Amount amount;
+    @JsonProperty("created_at")
+    private String createdAt;
+    @JsonProperty("payment_id")
+    private UUID paymentId;
 
 }

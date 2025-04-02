@@ -1,10 +1,11 @@
 plugins {
     id 'java'
     id 'maven-publish'
+    id 'org.jetbrains.kotlin.jvm'
 }
 
-group 'io.github.dynomake'
-version '1.0.5'
+group 'space.dynomake'
+version '1.0.6'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -20,17 +21,22 @@ repositories {
 dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.24'
     annotationProcessor 'org.projectlombok:lombok:1.18.24'
-    implementation 'com.google.code.gson:gson:2.8.7'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.18.2'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.18.2'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.18.2'
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+
 }
 
 publishing {
     repositories {
         maven {
-            name = "clojars"
-            url = uri("https://clojars.org/repo")
+            name = "dynoMaven"
+            url = uri("https://maven.dynomake.space/releases")
             credentials {
-                username = clojarsUserName
-                password = clojarsDeployToken
+                username = findProperty("dynoMavenUser") ?: System.getenv("CI_JOB_USER")
+                password = findProperty("dynoMavenPassword") ?: System.getenv("CI_JOB_TOKEN")
             }
         }
 
@@ -40,4 +46,6 @@ publishing {
             from(components.java)
         }
     }
+}
+compileKotlin {
 }

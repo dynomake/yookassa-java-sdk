@@ -14,8 +14,14 @@ public enum YookassaEvent {
     PAYMENT_SUCCESS_PAID("payment.succeeded"),
     PAYMENT_CANCELED("payment.canceled"),
 
+    PAYMENT_METHOD_ACTIVE("payment_method.active"),
+
     REFUND_SUCCESS("refund.succeeded"),
 
+    PAYOUT_SUCCESS("payout.succeeded"),
+    PAYOUT_CANCELED("payout.canceled"),
+
+    DEAL_CLOSED("deal.closed"),
     ;
 
     String eventName;
