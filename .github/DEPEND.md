@@ -12,7 +12,7 @@ repositories {
 
 dependencies {
     // other depend
-    implementation 'space.dynomake:yookassa-java-sdk:1.0.6'
+    implementation 'space.dynomake:yookassa-java-sdk:1.0.7'
 }
 ```
 
@@ -34,6 +34,6 @@ Depend:
 <dependency>
     <groupId>space.dynomake</groupId>
     <artifactId>yookassa-java-sdk</artifactId>
-    <version>1.0.6</version>
+    <version>1.0.7</version>
 </dependency>
 ```

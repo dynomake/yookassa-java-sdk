@@ -30,12 +30,16 @@ public class Payment {
     @JsonProperty("created_at")
     private OffsetDateTime createdAt;
 
+    @JsonProperty("captured_at")
+    private OffsetDateTime capturedAt;
+
     @JsonProperty("expires_at")
     private OffsetDateTime expiresAt;
 
     @JsonProperty("description")
     private String description;
-
+    @JsonProperty("receipt_registration")
+    private String receiptRegistration;
     @JsonProperty("metadata")
     private Map<String, Object> metadata;
 
@@ -48,7 +52,8 @@ public class Payment {
 
     @JsonProperty("income_amount")
     private Amount incomeAmount;
-
+    @JsonProperty("refunded_amount")
+    private Amount refundedAmount;
     @Getter
     @Builder
     @AllArgsConstructor
@@ -86,6 +91,9 @@ public class Payment {
 
         @JsonProperty("saved")
         private boolean saved;
+
+        @JsonProperty("status")
+        private String status;  // Добавляем это поле
 
         @JsonProperty("card")
         private Card card;
