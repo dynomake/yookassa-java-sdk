@@ -5,18 +5,13 @@ import lombok.NonNull;
 import me.dynomake.yookassa.Yookassa;
 import me.dynomake.yookassa.exception.BadRequestException;
 import me.dynomake.yookassa.utility.JsonUtil;
-import me.dynomake.yookassa.event.YookassaEvent;
 import me.dynomake.yookassa.exception.UnspecifiedShopInformation;
-import me.dynomake.yookassa.model.Amount;
 import me.dynomake.yookassa.model.Payment;
 import me.dynomake.yookassa.model.Refund;
-import me.dynomake.yookassa.model.Webhook;
 import me.dynomake.yookassa.model.collecting.PaymentList;
 import me.dynomake.yookassa.model.collecting.RefundList;
-import me.dynomake.yookassa.model.collecting.WebhookList;
 import me.dynomake.yookassa.model.request.PaymentRequest;
 import me.dynomake.yookassa.model.request.RefundRequest;
-import me.dynomake.yookassa.model.request.WebhookRequest;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -62,21 +57,6 @@ public class RealYookassa implements Yookassa {
     @Override
     public RefundList getRefunds() throws UnspecifiedShopInformation, BadRequestException, IOException {
         return parseResponse(RefundList.class, "https://api.yookassa.ru/v3/refunds", "GET", null);
-    }
-
-    @Override
-    public Webhook createWebhook(@NonNull WebhookRequest request) throws UnspecifiedShopInformation, BadRequestException, IOException {
-        return parseResponse(Webhook.class, "https://api.yookassa.ru/v3/webhooks", "POST", JsonUtil.toJson(request));
-    }
-
-    @Override
-    public void deleteWebhook(@NonNull UUID webhookIdentifier) throws UnspecifiedShopInformation, BadRequestException, IOException {
-        parseResponse(null, "https://api.yookassa.ru/v3/webhooks/" + webhookIdentifier, "DELETE",  null);
-    }
-
-    @Override
-    public WebhookList getWebhooks() throws UnspecifiedShopInformation, BadRequestException, IOException {
-        return parseResponse(WebhookList.class, "https://api.yookassa.ru/v3/webhooks", "GET", null);
     }
 
     private <T> T parseResponse(Class<T> wannableClass, @NonNull String requestAddress, @NonNull String requestMethod, String writableJson) throws IOException, UnspecifiedShopInformation, BadRequestException {

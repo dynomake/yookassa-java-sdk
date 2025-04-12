@@ -35,11 +35,6 @@ public interface Yookassa {
 
     RefundList getRefunds() throws UnspecifiedShopInformation, BadRequestException, IOException;
 
-    Webhook createWebhook(@NonNull WebhookRequest request) throws UnspecifiedShopInformation, BadRequestException, IOException;
-    void deleteWebhook(@NonNull UUID webhookIdentifier) throws UnspecifiedShopInformation, BadRequestException, IOException;
-    WebhookList getWebhooks() throws UnspecifiedShopInformation, BadRequestException, IOException;
-
-
     static Yookassa initialize(int shopIdentifier, @NonNull String shopToken) {
         return new RealYookassa(shopIdentifier, shopToken);
     }
