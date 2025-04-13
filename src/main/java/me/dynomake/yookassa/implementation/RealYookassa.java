@@ -60,7 +60,7 @@ public class RealYookassa implements Yookassa {
     }
 
     private <T> T parseResponse(Class<T> wannableClass, @NonNull String requestAddress, @NonNull String requestMethod, String writableJson) throws IOException, UnspecifiedShopInformation, BadRequestException {
-        System.out.println("Request: " + writableJson);
+//        System.out.println("Request: " + writableJson);
         if (shopIdentifier == 0 || shopToken == null) {
             throw new UnspecifiedShopInformation();
         }
@@ -96,10 +96,10 @@ public class RealYookassa implements Yookassa {
 
         String response = s.hasNext() ? s.next() : "";
 
-        System.out.println(response);
+//        System.out.println(response);
 
         if (!success) {
-            System.out.println(response);
+//            System.out.println(response);
             throw new BadRequestException();
         }
 

@@ -1,5 +1,4 @@
 ## | `Yookassa Java SDK - Usage:`
-*You can found full example-code in:* [LINK](https://github.com/dynomake/yookassa-java-sdk/tree/master/src/test/java/me/dynomake/yookassa)
 
 First initialize the instance of Yookassa:
 ```java
