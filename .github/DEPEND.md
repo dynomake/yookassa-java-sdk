@@ -6,7 +6,7 @@ If you use Gradle with Groovy, then here is an example of adding dependencies:
 repositories {
     // other repositories
     maven {
-        url = uri("https://maven.dynomake.space/releases")
+        url = uri("https://maven.dynomake.it/releases")
     }
 }
 
@@ -22,8 +22,8 @@ Repository:
 
 ```xml
 <repository>
-    <id>dynomake.space</id>
-    <url>https://maven.dynomake.space/releases</url>
+    <id>dynomake.it</id>
+    <url>https://maven.dynomake.it/releases</url>
 </repository>
 ```
 
